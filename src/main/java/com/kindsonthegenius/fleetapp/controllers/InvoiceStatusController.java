@@ -3,7 +3,6 @@ package com.kindsonthegenius.fleetapp.controllers;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +11,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.kindsonthegenius.fleetapp.models.Country;
 import com.kindsonthegenius.fleetapp.models.InvoiceStatus;
-import com.kindsonthegenius.fleetapp.models.State;
 import com.kindsonthegenius.fleetapp.services.InvoiceStatusService;
 
 @Controller
 public class InvoiceStatusController {
 
-	@Autowired  private InvoiceStatusService invoiceStatusService;
+	private InvoiceStatusService invoiceStatusService;
+
+	public InvoiceStatusController(InvoiceStatusService invoiceStatusService) {
+		this.invoiceStatusService = invoiceStatusService;
+	}
 
 	@GetMapping("/invoiceStatuses")
 	public String getStates(Model model) {		

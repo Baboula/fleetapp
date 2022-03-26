@@ -2,7 +2,6 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +19,23 @@ import com.kindsonthegenius.fleetapp.services.StateService;
 
 @Controller
 public class EmployeeController {
-	
 
-	
-	@Autowired	private EmployeeService employeeService;
-	@Autowired	private JobTitleService jobTitleService;
-	@Autowired	private EmployeeTypeService employeeTypeService;
-	@Autowired	private CountryService countryService;
-	@Autowired	private StateService stateService;
+	private EmployeeService employeeService;
+	private JobTitleService jobTitleService;
+	private EmployeeTypeService employeeTypeService;
+	private CountryService countryService;
+	private StateService stateService;
 
+	public EmployeeController(EmployeeService employeeService, JobTitleService jobTitleService,
+							  EmployeeTypeService employeeTypeService, CountryService countryService,
+							  StateService stateService) {
+		this.employeeService = employeeService;
+		this.jobTitleService = jobTitleService;
+		this.employeeTypeService = employeeTypeService;
+		this.countryService = countryService;
+		this.stateService = stateService;
+	}
 
-	
-	
 
 	@GetMapping("/employees")
 	public String getEmployees(Model model, String keyword) {	

@@ -2,7 +2,6 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,18 +12,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kindsonthegenius.fleetapp.models.VehicleMovement;
 import com.kindsonthegenius.fleetapp.services.LocationService;
-import com.kindsonthegenius.fleetapp.services.SupplierService;
 import com.kindsonthegenius.fleetapp.services.VehicleMovementService;
 import com.kindsonthegenius.fleetapp.services.VehicleService;
 
 @Controller
 public class VehicleMovementController {
 
+	private VehicleMovementService vehicleMovementService;
+	private VehicleService vehicleService;
+	private LocationService locationService;
 
-	
-	@Autowired	private VehicleMovementService vehicleMovementService;
-	@Autowired	private VehicleService vehicleService;
-	@Autowired	private LocationService locationService;
+	public VehicleMovementController(VehicleMovementService vehicleMovementService,
+									 VehicleService vehicleService,
+									 LocationService locationService) {
+		this.vehicleMovementService = vehicleMovementService;
+		this.vehicleService = vehicleService;
+		this.locationService = locationService;
+	}
 
 
 	@GetMapping("/vehicleMovements")

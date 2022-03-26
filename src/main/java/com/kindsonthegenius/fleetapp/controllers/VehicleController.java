@@ -2,7 +2,6 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,13 +30,26 @@ public class VehicleController {
 	//Vehicle Type
 	//Vehicle Model
 	
-	@Autowired	private VehicleService vehicleService;
-	@Autowired	private LocationService locationService;
-	@Autowired	private EmployeeService employeeService;
-	@Autowired	private VehicleMakeService vehicleMakeService;
-	@Autowired	private VehicleStatusService vehicleStatusService;
-	@Autowired	private VehicleTypeService vehicleTypeService;
-	@Autowired	private VehicleModelService vehicleModelService;
+	private VehicleService vehicleService;
+	private LocationService locationService;
+	private EmployeeService employeeService;
+	private VehicleMakeService vehicleMakeService;
+	private VehicleStatusService vehicleStatusService;
+	private VehicleTypeService vehicleTypeService;
+	private VehicleModelService vehicleModelService;
+
+	public VehicleController(VehicleService vehicleService, LocationService locationService,
+							 EmployeeService employeeService, VehicleMakeService vehicleMakeService,
+							 VehicleStatusService vehicleStatusService, VehicleTypeService vehicleTypeService,
+							 VehicleModelService vehicleModelService) {
+		this.vehicleService = vehicleService;
+		this.locationService = locationService;
+		this.employeeService = employeeService;
+		this.vehicleMakeService = vehicleMakeService;
+		this.vehicleStatusService = vehicleStatusService;
+		this.vehicleTypeService = vehicleTypeService;
+		this.vehicleModelService = vehicleModelService;
+	}
 
 
 	@GetMapping("/vehicles")

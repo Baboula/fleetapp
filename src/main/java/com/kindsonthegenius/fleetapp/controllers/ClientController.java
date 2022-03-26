@@ -2,7 +2,6 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,9 +18,15 @@ import com.kindsonthegenius.fleetapp.services.StateService;
 @Controller
 public class ClientController {
 
-	@Autowired	private ClientService clientService;
-	@Autowired	private CountryService countryService;
-	@Autowired	private StateService stateService;
+	private ClientService clientService;
+	private CountryService countryService;
+	private StateService stateService;
+
+	public ClientController(ClientService clientService, CountryService countryService, StateService stateService) {
+		this.clientService = clientService;
+		this.countryService = countryService;
+		this.stateService = stateService;
+	}
 
 
 	@GetMapping("/clients")
