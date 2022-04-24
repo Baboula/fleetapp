@@ -27,9 +27,11 @@ public class EmployeeController {
 	@Autowired private CountryService countryService;
 	@Autowired private StateService stateService;
 
+	//access to employees list
 	@GetMapping("/employees")
 	public String getEmployees(Model model, String keyword) {	
-		
+
+		// add all jobTitles, employeeTypes, countries and states in model
 		model.addAttribute("jobTitles", jobTitleService.getJobTitles());		
 	    model.addAttribute("employeeTypes", employeeTypeService.getEmployeeTypes());
 		model.addAttribute("countries", countryService.getCountries());			
@@ -45,7 +47,8 @@ public class EmployeeController {
 		
 		return "Employee";
 	}	
-	
+
+	// filter for employees
 	@GetMapping("/employeesFiltered")
 	public String getEmployeesFiltered(Model model, String keyword) {	
 		
@@ -60,25 +63,28 @@ public class EmployeeController {
 	}
 	
 	
-	
+	// access to add form for employee
 	@PostMapping("/employees/addNew")
 	public String addNew(Employee employee) {
 		employeeService.save(employee);
 		return "redirect:/employees";
 	}
-	
+
+	// Get employee by id
 	@RequestMapping("employees/findById")
 	@ResponseBody
 	public Optional<Employee> findById(int id) {
 	  return employeeService.findById(id);	
 	}	
-	
+
+	// update employee
 	@RequestMapping(value="/employees/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Employee employee) {
 		employeeService.save(employee);
 		return "redirect:/employees";
 	}
-	
+
+	// delete employee
 	@RequestMapping(value="/employees/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		employeeService.delete(id);

@@ -20,6 +20,7 @@ public class VehicleStatusController {
 
 	@Autowired private VehicleStatusService vehicleStatusService;
 
+	// access to vehicles status list
 	@GetMapping("/vehicleStatuses")
 	public String getVehicleStatuss(Model model) {		
 		
@@ -28,25 +29,29 @@ public class VehicleStatusController {
 		model.addAttribute("vehicleStatuses", vehicleStatusList);
 		return "vehicleStatus";
 	}	
-	
+
+	// add  new vehicle status
 	@PostMapping("/vehicleStatuses/addNew")
 	public String addNew(VehicleStatus vehicleStatus) {
 		vehicleStatusService.save(vehicleStatus);
 		return "redirect:/vehicleStatuses";
 	}
-	
+
+	// Get vehicle status bt id
 	@RequestMapping("vehicleStatuses/findById")
 	@ResponseBody
 	public Optional<VehicleStatus> findById(int id) {
 	  return vehicleStatusService.findById(id);	
 	}	
-	
+
+	// update vehicle status
 	@RequestMapping(value="/vehicleStatuses/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleStatus vehicleStatus) {
 		vehicleStatusService.save(vehicleStatus);
 		return "redirect:/vehicleStatuses";
 	}
-	
+
+	// delete vehicle status
 	@RequestMapping(value="/vehicleStatuses/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleStatusService.delete(id);

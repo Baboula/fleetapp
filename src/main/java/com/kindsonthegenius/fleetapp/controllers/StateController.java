@@ -23,6 +23,7 @@ public class StateController {
 	@Autowired private StateService stateService;
 	@Autowired private CountryService countryService;
 
+	// access to states list
 	@GetMapping("/states")
 	public String getStates(Model model) {		
 		List<State> stateList = stateService.getStates();	
@@ -33,25 +34,29 @@ public class StateController {
 		
 		return "State";
 	}	
-	
+
+	// add new state
 	@PostMapping("/states/addNew")
 	public String addNew(State state) {
 		stateService.save(state);
 		return "redirect:/states";
 	}
-	
+
+	// Get state by id
 	@RequestMapping("states/findById")
 	@ResponseBody
 	public Optional<State> findById(int id) {
 	  return stateService.findById(id);	
 	}	
-	
+
+	// update state
 	@RequestMapping(value="/states/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(State state) {
 		stateService.save(state);
 		return "redirect:/states";
 	}
-	
+
+	// delete state
 	@RequestMapping(value="/states/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		stateService.delete(id);

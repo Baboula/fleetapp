@@ -23,35 +23,39 @@ public class InvoiceController {
 	@Autowired private ClientService clientService;
 	@Autowired private InvoiceStatusService  invoiceStatusService;
 
-
+	// access to invoices list
 	@GetMapping("/invoices")
-	public String getInvoices(Model model) {		
-		model.addAttribute("invoices", invoiceService.getInvoices());	
-		
+	public String getInvoices(Model model) {
+
+		model.addAttribute("invoices", invoiceService.getInvoices());
 		model.addAttribute("clients", clientService.getClients());
 		model.addAttribute("invoiceStatuses", invoiceStatusService.getInvoiceStatuses());
 	
 		return "Invoice";
 	}	
-	
+
+	// save new invoice of client
 	@PostMapping("/invoices/addNew")
 	public String addNew(Invoice invoice) {
 		invoiceService.save(invoice);
 		return "redirect:/invoices";
 	}
-	
+
+	// Get invoice by id
 	@RequestMapping("invoices/findById")
 	@ResponseBody
 	public Optional<Invoice> findById(int id) {
 	  return invoiceService.findById(id);	
 	}	
-	
+
+	// update invoice
 	@RequestMapping(value="/invoices/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Invoice invoice) {
 		invoiceService.save(invoice);
 		return "redirect:/invoices";
 	}
-	
+
+	// delete invoice
 	@RequestMapping(value="/invoices/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		invoiceService.delete(id);

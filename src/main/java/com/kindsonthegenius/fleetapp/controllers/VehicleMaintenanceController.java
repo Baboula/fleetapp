@@ -24,6 +24,7 @@ public class VehicleMaintenanceController {
 	@Autowired private VehicleService vehicleService;
 	@Autowired private SupplierService supplierService;
 
+	//access to vehicles in maintenance list
 	@GetMapping("/vehicleMaintenances")
 	public String getVehicleMaintenances(Model model) {		
 		model.addAttribute("vehicleMaintenances", vehicleMaintenanceService.getVehicleMaintenances());	
@@ -33,25 +34,29 @@ public class VehicleMaintenanceController {
 
 		return "VehicleMaintenance";
 	}	
-	
+
+	// add new vehicle in maintenance
 	@PostMapping("/vehicleMaintenances/addNew")
 	public String addNew(VehicleMaintenance vehicleMaintenance) {
 		vehicleMaintenanceService.save(vehicleMaintenance);
 		return "redirect:/vehicleMaintenances";
 	}
-	
+
+	// Get vehiculeMaintenance by id
 	@RequestMapping("vehicleMaintenances/findById")
 	@ResponseBody
 	public Optional<VehicleMaintenance> findById(int id) {
 	  return vehicleMaintenanceService.findById(id);	
 	}	
-	
+
+	// update vehicleMaintenance
 	@RequestMapping(value="/vehicleMaintenances/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleMaintenance vehicleMaintenance) {
 		vehicleMaintenanceService.save(vehicleMaintenance);
 		return "redirect:/vehicleMaintenances";
 	}
-	
+
+	// delete vehicleMaintenance
 	@RequestMapping(value="/vehicleMaintenances/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleMaintenanceService.delete(id);

@@ -25,6 +25,7 @@ public class UserController {
 		return "user";
 	}
 
+	// Get user by id
 	@RequestMapping("users/findById")
 	@ResponseBody
 	public User findById(Integer id)

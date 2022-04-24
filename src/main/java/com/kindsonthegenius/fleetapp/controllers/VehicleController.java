@@ -39,7 +39,7 @@ public class VehicleController {
 	@Autowired private VehicleTypeService vehicleTypeService;
 	@Autowired private VehicleModelService vehicleModelService;
 
-
+	// access to vehicles list
 	@GetMapping("/vehicles")
 	public String getVehicles(Model model) {	
 		
@@ -52,25 +52,29 @@ public class VehicleController {
 		model.addAttribute("vehicleModels", vehicleModelService.getVehicleModels());				
 		return "Vehicle";
 	}	
-	
+
+	// add new vehicle
 	@PostMapping("/vehicles/addNew")
 	public String addNew(Vehicle vehicle) {
 		vehicleService.save(vehicle);
 		return "redirect:/vehicles";
 	}
-	
+
+	// Get vehicle by id
 	@RequestMapping("vehicles/findById")
 	@ResponseBody
 	public Optional<Vehicle> findById(int id) {
 	  return vehicleService.findById(id);	
 	}	
-	
+
+	// update vehicle
 	@RequestMapping(value="/vehicles/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Vehicle vehicle) {
 		vehicleService.save(vehicle);
 		return "redirect:/vehicles";
 	}
-	
+
+	// delete vehicle
 	@RequestMapping(value="/vehicles/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleService.delete(id);

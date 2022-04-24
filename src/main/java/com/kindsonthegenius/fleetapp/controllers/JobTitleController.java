@@ -20,6 +20,7 @@ public class JobTitleController {
 
 	@Autowired private JobTitleService jobTitleService;
 
+	//access to jobTitles list
 	@GetMapping("/jobTitles")
 	public String getJobTitles(Model model) {		
 		
@@ -28,25 +29,29 @@ public class JobTitleController {
 		model.addAttribute("jobTitles", jobTitleList);
 		return "jobTitle";
 	}	
-	
+
+	// add new jobTittle
 	@PostMapping("/jobTitles/addNew")
 	public String addNew(JobTitle jobTitle) {
 		jobTitleService.save(jobTitle);
 		return "redirect:/jobTitles";
 	}
-	
+
+	// Get jobTitle by id
 	@RequestMapping("jobTitles/findById")
 	@ResponseBody
 	public Optional<JobTitle> findById(int id) {
 	  return jobTitleService.findById(id);	
 	}	
-	
+
+	// update jobTitles
 	@RequestMapping(value="/jobTitles/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(JobTitle jobTitle) {
 		jobTitleService.save(jobTitle);
 		return "redirect:/jobTitles";
 	}
-	
+
+	// delete jobTitles
 	@RequestMapping(value="/jobTitles/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		jobTitleService.delete(id);

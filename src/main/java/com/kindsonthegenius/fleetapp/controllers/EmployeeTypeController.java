@@ -26,28 +26,33 @@ public class EmployeeTypeController {
 		
 		List<EmployeeType> employeeTypeList = employeeTypeService.getEmployeeTypes();	
 
+		//add employeeType list in model
 		model.addAttribute("employeeTypes", employeeTypeList);
 		return "employeeType";
 	}	
-	
+
+	// access to add form of employeeType
 	@PostMapping("/employeeTypes/addNew")
 	public String addNew(EmployeeType employeeType) {
 		employeeTypeService.save(employeeType);
 		return "redirect:/employeeTypes";
 	}
-	
+
+	// Get employeeType  by id
 	@RequestMapping("employeeTypes/findById")
 	@ResponseBody
 	public Optional<EmployeeType> findById(int id) {
 	  return employeeTypeService.findById(id);	
 	}	
-	
+
+	// update employeeType
 	@RequestMapping(value="/employeeTypes/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(EmployeeType employeeType) {
 		employeeTypeService.save(employeeType);
 		return "redirect:/employeeTypes";
 	}
-	
+
+	// delete employeeType
 	@RequestMapping(value="/employeeTypes/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		employeeTypeService.delete(id);

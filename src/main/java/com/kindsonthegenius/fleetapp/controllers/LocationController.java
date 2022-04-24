@@ -25,6 +25,7 @@ public class LocationController {
 	@Autowired private CountryService countryService;
 	@Autowired private LocationService locationService;
 
+	// access to location page
 	@GetMapping("/locations")
 	public String getStates(Model model) {		
 		
@@ -37,25 +38,29 @@ public class LocationController {
 		//model.addAttribute("states", stateList);
 		return "location";
 	}	
-	
+
+	// add new location
 	@PostMapping("/locations/addNew")
 	public String addNew(Location location) {
 		locationService.save(location);
 		return "redirect:/locations";
 	}
-	
+
+	// find location by id
 	@RequestMapping("locations/findById")
 	@ResponseBody
 	public Optional<Location> findById(int id) {
 	  return locationService.findById(id);	
 	}	
-	
+
+	// update location
 	@RequestMapping(value="/locations/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Location location) {
 		locationService.save(location);
 		return "redirect:/locations";
 	}
-	
+
+	// delete location
 	@RequestMapping(value="/locations/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		locationService.delete(id);

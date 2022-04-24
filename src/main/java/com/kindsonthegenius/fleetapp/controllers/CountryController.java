@@ -21,31 +21,38 @@ public class CountryController {
 	@Autowired
 	private CountryService countryService;
 
+	// access to countries list
 	@GetMapping("/countries")
 	public String getCountries(Model model) {		
-		List<Country> countryList = countryService.getCountries();	
+		List<Country> countryList = countryService.getCountries();
+
+		// add  all countries in model
 		model.addAttribute("countries", countryList);	
 		return "country";
 	}	
-	
+
+	// access to add form of country
 	@PostMapping("/countries/addNew")
 	public String addNew(Country country) {
 		countryService.save(country);
 		return "redirect:/countries";
 	}
-	
+
+	// Get country by id
 	@RequestMapping("countries/findById")
 	@ResponseBody
 	public Optional<Country> findById(int id) {
 	  return countryService.findById(id);	
 	}	
-	
+
+	// update country and redirect to countries list
 	@RequestMapping(value="/countries/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Country country) {
 		countryService.save(country);
 		return "redirect:/countries";
 	}
-	
+
+	// delete country and show new list of countries
 	@RequestMapping(value="/countries/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		countryService.delete(id);
