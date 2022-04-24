@@ -1,5 +1,6 @@
 package com.kindsonthegenius.fleetapp.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,12 +16,7 @@ import com.kindsonthegenius.fleetapp.services.UserService;
 @Controller
 public class UserController {
 
-	private UserService userService;
-
-	public UserController(UserService userService) {
-		this.userService = userService;
-	}
-
+	@Autowired private UserService userService;
 
 	//Get All Users
 	@GetMapping("users")
@@ -36,7 +32,7 @@ public class UserController {
 		return userService.findById(id);
 	}
 
-	//Modified method to Add a new user User
+	//Modified method to Add a new user
 	@PostMapping(value="users/addNew")
 	public RedirectView addNew(User user, RedirectAttributes redir) {
 		

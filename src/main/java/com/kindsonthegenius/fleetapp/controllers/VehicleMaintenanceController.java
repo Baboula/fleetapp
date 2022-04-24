@@ -2,6 +2,7 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +19,10 @@ import com.kindsonthegenius.fleetapp.services.VehicleService;
 @Controller
 public class VehicleMaintenanceController {
 
-	
-	private VehicleMaintenanceService vehicleMaintenanceService;
-	private VehicleService vehicleService;
-	private SupplierService supplierService;
 
-	public VehicleMaintenanceController(VehicleMaintenanceService vehicleMaintenanceService,
-										VehicleService vehicleService, SupplierService supplierService) {
-		this.vehicleMaintenanceService = vehicleMaintenanceService;
-		this.vehicleService = vehicleService;
-		this.supplierService = supplierService;
-	}
-
+	@Autowired private VehicleMaintenanceService vehicleMaintenanceService;
+	@Autowired private VehicleService vehicleService;
+	@Autowired private SupplierService supplierService;
 
 	@GetMapping("/vehicleMaintenances")
 	public String getVehicleMaintenances(Model model) {		
@@ -37,9 +30,7 @@ public class VehicleMaintenanceController {
 		
 		model.addAttribute("vehicles", vehicleService.getVehicles());
 		model.addAttribute("suppliers", supplierService.getSuppliers());
-		
 
-		
 		return "VehicleMaintenance";
 	}	
 	

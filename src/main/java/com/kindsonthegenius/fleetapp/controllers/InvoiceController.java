@@ -2,6 +2,7 @@ package com.kindsonthegenius.fleetapp.controllers;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,17 +19,9 @@ import com.kindsonthegenius.fleetapp.services.InvoiceStatusService;
 @Controller
 public class InvoiceController {
 
-
-	private InvoiceService invoiceService;
-	private ClientService clientService;
-	private InvoiceStatusService  invoiceStatusService;
-
-	public InvoiceController(InvoiceService invoiceService, ClientService clientService,
-							 InvoiceStatusService invoiceStatusService) {
-		this.invoiceService = invoiceService;
-		this.clientService = clientService;
-		this.invoiceStatusService = invoiceStatusService;
-	}
+	@Autowired private InvoiceService invoiceService;
+	@Autowired private ClientService clientService;
+	@Autowired private InvoiceStatusService  invoiceStatusService;
 
 
 	@GetMapping("/invoices")

@@ -4,6 +4,7 @@ import com.kindsonthegenius.fleetapp.models.User;
 import com.kindsonthegenius.fleetapp.security.models.Role;
 import com.kindsonthegenius.fleetapp.security.services.RoleService;
 import com.kindsonthegenius.fleetapp.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,13 +14,8 @@ import java.util.List;
 @Controller
 public class RoleController {
 
-    private RoleService roleService;
-    private UserService userService;
-
-    public RoleController(RoleService roleService, UserService userService) {
-        this.roleService = roleService;
-        this.userService = userService;
-    }
+    @Autowired private RoleService roleService;
+    @Autowired private UserService userService;
 
     @GetMapping("/roles")
     public String getStates(Model model) {

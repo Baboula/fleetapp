@@ -3,6 +3,7 @@ package com.kindsonthegenius.fleetapp.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,11 +18,7 @@ import com.kindsonthegenius.fleetapp.services.VehicleModelService;
 @Controller
 public class VehicleModelController {
 
-	private VehicleModelService vehicleModelService;
-
-	public VehicleModelController(VehicleModelService vehicleModelService) {
-		this.vehicleModelService = vehicleModelService;
-	}
+	@Autowired private VehicleModelService vehicleModelService;
 
 	@GetMapping("/vehicleModels")
 	public String getVehicleModels(Model model) {		
