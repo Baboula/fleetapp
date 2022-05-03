@@ -17,7 +17,7 @@ import com.kindsonthegenius.fleetapp.services.CountryService;
 import com.kindsonthegenius.fleetapp.services.StateService;
 
 @Controller
-public class ClientController {
+public class ClientController{
 
 	@Autowired private ClientService clientService;
 	@Autowired private CountryService countryService;
@@ -38,12 +38,13 @@ public class ClientController {
 
 		return "Client";
 	}	
+	private static final String redirection = "redirect:/clients";
 
 	// send infos of new client
 	@PostMapping("/clients/addNew")
 	public String addNew(Client client) {
 		clientService.save(client);
-		return "redirect:/clients";
+		return redirection;
 	}
 
 	// Get client by id
@@ -57,14 +58,14 @@ public class ClientController {
 	@RequestMapping(value="/clients/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Client client) {
 		clientService.save(client);
-		return "redirect:/clients";
+		return redirection;
 	}
 
 	// delete client by id and show new list of clients
 	@RequestMapping(value="/clients/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		clientService.delete(id);
-		return "redirect:/clients";
+		return redirection;
 	}
 	
 }

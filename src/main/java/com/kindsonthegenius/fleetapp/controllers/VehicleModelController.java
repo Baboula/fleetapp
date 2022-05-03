@@ -28,13 +28,15 @@ public class VehicleModelController {
 
 		model.addAttribute("vehicleModels", vehicleModelList);
 		return "vehicleModel";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleModels";
 
 	// add new vehicle model
 	@PostMapping("/vehicleModels/addNew")
 	public String addNew(VehicleModel vehicleModel) {
 		vehicleModelService.save(vehicleModel);
-		return "redirect:/vehicleModels";
+		return redirection;
 	}
 
 	// Get vehicle model by id
@@ -48,13 +50,13 @@ public class VehicleModelController {
 	@RequestMapping(value="/vehicleModels/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleModel vehicleModel) {
 		vehicleModelService.save(vehicleModel);
-		return "redirect:/vehicleModels";
+		return redirection;
 	}
 
 	// delete vehicle model
 	@RequestMapping(value="/vehicleModels/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleModelService.delete(id);
-		return "redirect:/vehicleModels";
+		return redirection;
 	}
 }

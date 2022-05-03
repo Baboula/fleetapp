@@ -37,13 +37,15 @@ public class LocationController {
 		model.addAttribute("locations", locationList);	
 		//model.addAttribute("states", stateList);
 		return "location";
-	}	
+	}
+
+	private static final String redirection = "redirect:/locations";
 
 	// add new location
 	@PostMapping("/locations/addNew")
 	public String addNew(Location location) {
 		locationService.save(location);
-		return "redirect:/locations";
+		return redirection;
 	}
 
 	// find location by id
@@ -57,13 +59,13 @@ public class LocationController {
 	@RequestMapping(value="/locations/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Location location) {
 		locationService.save(location);
-		return "redirect:/locations";
+		return redirection;
 	}
 
 	// delete location
 	@RequestMapping(value="/locations/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		locationService.delete(id);
-		return "redirect:/locations";
+		return redirection;
 	}
 }

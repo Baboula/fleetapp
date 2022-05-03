@@ -28,13 +28,15 @@ public class JobTitleController {
 
 		model.addAttribute("jobTitles", jobTitleList);
 		return "jobTitle";
-	}	
+	}
+
+	private static final String redirection = "redirect:/jobTitles";
 
 	// add new jobTittle
 	@PostMapping("/jobTitles/addNew")
 	public String addNew(JobTitle jobTitle) {
 		jobTitleService.save(jobTitle);
-		return "redirect:/jobTitles";
+		return redirection;
 	}
 
 	// Get jobTitle by id
@@ -48,13 +50,13 @@ public class JobTitleController {
 	@RequestMapping(value="/jobTitles/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(JobTitle jobTitle) {
 		jobTitleService.save(jobTitle);
-		return "redirect:/jobTitles";
+		return redirection;
 	}
 
 	// delete jobTitles
 	@RequestMapping(value="/jobTitles/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		jobTitleService.delete(id);
-		return "redirect:/jobTitles";
+		return redirection;
 	}
 }

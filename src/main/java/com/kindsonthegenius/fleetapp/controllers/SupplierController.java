@@ -34,13 +34,15 @@ public class SupplierController {
 
 		
 		return "Supplier";
-	}	
+	}
+
+	private static final String redirection = "redirect:/suppliers";
 
 	// add new supplier
 	@PostMapping("/suppliers/addNew")
 	public String addNew(Supplier supplier) {
 		supplierService.save(supplier);
-		return "redirect:/suppliers";
+		return redirection;
 	}
 
 	// Get supplier by id
@@ -54,14 +56,14 @@ public class SupplierController {
 	@RequestMapping(value="/suppliers/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Supplier supplier) {
 		supplierService.save(supplier);
-		return "redirect:/suppliers";
+		return redirection;
 	}
 
 	// delete supplier
 	@RequestMapping(value="/suppliers/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		supplierService.delete(id);
-		return "redirect:/suppliers";
+		return redirection;
 	}
 	
 }

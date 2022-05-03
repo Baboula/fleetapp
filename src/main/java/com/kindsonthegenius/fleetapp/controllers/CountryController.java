@@ -29,13 +29,14 @@ public class CountryController {
 		// add  all countries in model
 		model.addAttribute("countries", countryList);	
 		return "country";
-	}	
+	}
+	private static final String redirection = "redirect:/countries";
 
 	// access to add form of country
 	@PostMapping("/countries/addNew")
 	public String addNew(Country country) {
 		countryService.save(country);
-		return "redirect:/countries";
+		return redirection;
 	}
 
 	// Get country by id
@@ -49,14 +50,14 @@ public class CountryController {
 	@RequestMapping(value="/countries/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Country country) {
 		countryService.save(country);
-		return "redirect:/countries";
+		return redirection;
 	}
 
 	// delete country and show new list of countries
 	@RequestMapping(value="/countries/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		countryService.delete(id);
-		return "redirect:/countries";
+		return redirection;
 	}
 	
 }

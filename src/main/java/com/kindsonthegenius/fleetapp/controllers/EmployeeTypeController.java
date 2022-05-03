@@ -29,13 +29,15 @@ public class EmployeeTypeController {
 		//add employeeType list in model
 		model.addAttribute("employeeTypes", employeeTypeList);
 		return "employeeType";
-	}	
+	}
+
+	private static final String redirection = "redirect:/employeeTypes";
 
 	// access to add form of employeeType
 	@PostMapping("/employeeTypes/addNew")
 	public String addNew(EmployeeType employeeType) {
 		employeeTypeService.save(employeeType);
-		return "redirect:/employeeTypes";
+		return redirection;
 	}
 
 	// Get employeeType  by id
@@ -49,13 +51,13 @@ public class EmployeeTypeController {
 	@RequestMapping(value="/employeeTypes/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(EmployeeType employeeType) {
 		employeeTypeService.save(employeeType);
-		return "redirect:/employeeTypes";
+		return redirection;
 	}
 
 	// delete employeeType
 	@RequestMapping(value="/employeeTypes/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		employeeTypeService.delete(id);
-		return "redirect:/employeeTypes";
+		return redirection;
 	}
 }

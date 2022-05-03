@@ -33,10 +33,12 @@ public class RoleController {
         return "/userEdit";
     }
 
+    private static final String REDIRECTIONROLES = "redirect:/roles";
+
     @PostMapping("/roles/addNew")
     public String addNew(Role role) {
         roleService.save(role);
-        return "redirect:/roles";
+        return REDIRECTIONROLES;
     }
 
     @RequestMapping("roles/findById")
@@ -48,13 +50,13 @@ public class RoleController {
     @RequestMapping(value="/roles/update", method= {RequestMethod.PUT, RequestMethod.GET})
     public String update(Role role) {
         roleService.save(role);
-        return "redirect:/roles";
+        return REDIRECTIONROLES;
     }
 
     @RequestMapping(value="/roles/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(Integer id) {
         roleService.delete(id);
-        return "redirect:/roles";
+        return REDIRECTIONROLES;
     }
 
     @RequestMapping("/role/assign/{userId}/{roleId}")

@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kindsonthegenius.fleetapp.models.Vehicle;
-import com.kindsonthegenius.fleetapp.models.Vehicle;
-import com.kindsonthegenius.fleetapp.repositories.VehicleRepository;
 import com.kindsonthegenius.fleetapp.repositories.VehicleRepository;
 
 @Service

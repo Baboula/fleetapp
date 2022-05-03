@@ -11,7 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
@@ -23,11 +22,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		http
 		.csrf().disable()
 		.authorizeRequests()
-		.antMatchers("/login", "/resources/**",
-				"/css/**", "/fonts/**", "/img/**").permitAll()
 		.antMatchers("/register", "/resources/**",
 				"/css/**", "/fonts/**", "/img/**", "/js/**").permitAll()
 		.antMatchers("/users/addNew").permitAll()
@@ -35,16 +33,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 				.exceptionHandling().accessDeniedPage("/accessDenied")
 				.and()
-		.formLogin()
-		.loginPage("/login").permitAll()
-		.and()
 		.logout().invalidateHttpSession(true)
 		.clearAuthentication(true)
-		.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-		.logoutSuccessUrl("/login").permitAll();
+				.and().formLogin().loginPage("/login").permitAll()
+				.and().logout().permitAll();
 	}
-		
+
+	/**
+	 * @deprecated
+	 */
 	@Bean
+	@Deprecated
 	public PasswordEncoder passwordEncoder() {
 		return NoOpPasswordEncoder.getInstance();
 	}

@@ -28,13 +28,15 @@ public class VehicleMakeController {
 		
 		model.addAttribute("vehicleMakes", vehicleMakeList);
 		return "vehicleMake";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleMakes";
 
 	// add new vehicle make
 	@PostMapping("/vehicleMakes/addNew")
 	public String addNew(VehicleMake vehicleMake) {
 		vehicleMakeService.save(vehicleMake);
-		return "redirect:/vehicleMakes";
+		return redirection;
 	}
 
 	// Get vehicle make by id
@@ -48,13 +50,13 @@ public class VehicleMakeController {
 	@RequestMapping(value="/vehicleMakes/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleMake vehicleMake) {
 		vehicleMakeService.save(vehicleMake);
-		return "redirect:/vehicleMakes";
+		return redirection;
 	}
 
 	// delete vehicle make
 	@RequestMapping(value="/vehicleMakes/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleMakeService.delete(id);
-		return "redirect:/vehicleMakes";
+		return redirection;
 	}
 }

@@ -2,14 +2,10 @@ package com.kindsonthegenius.fleetapp.models;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
 import com.kindsonthegenius.fleetapp.security.models.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -17,7 +13,8 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {		
+public class User{
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
 	private int id;
@@ -33,5 +30,5 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
 	Set<Role> roles = new HashSet<>();
-	
+
 }

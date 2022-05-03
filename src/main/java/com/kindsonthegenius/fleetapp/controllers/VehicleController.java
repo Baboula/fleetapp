@@ -51,13 +51,15 @@ public class VehicleController {
 		model.addAttribute("vehicleTypes", vehicleTypeService.getVehicleTypes());
 		model.addAttribute("vehicleModels", vehicleModelService.getVehicleModels());				
 		return "Vehicle";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicles";
 
 	// add new vehicle
 	@PostMapping("/vehicles/addNew")
 	public String addNew(Vehicle vehicle) {
 		vehicleService.save(vehicle);
-		return "redirect:/vehicles";
+		return redirection;
 	}
 
 	// Get vehicle by id
@@ -71,14 +73,14 @@ public class VehicleController {
 	@RequestMapping(value="/vehicles/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Vehicle vehicle) {
 		vehicleService.save(vehicle);
-		return "redirect:/vehicles";
+		return redirection;
 	}
 
 	// delete vehicle
 	@RequestMapping(value="/vehicles/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleService.delete(id);
-		return "redirect:/vehicles";
+		return redirection;
 	}
 	
 }

@@ -27,6 +27,8 @@ public class EmployeeController {
 	@Autowired private CountryService countryService;
 	@Autowired private StateService stateService;
 
+	String employees = "employees";
+
 	//access to employees list
 	@GetMapping("/employees")
 	public String getEmployees(Model model, String keyword) {	
@@ -35,14 +37,14 @@ public class EmployeeController {
 		model.addAttribute("jobTitles", jobTitleService.getJobTitles());		
 	    model.addAttribute("employeeTypes", employeeTypeService.getEmployeeTypes());
 		model.addAttribute("countries", countryService.getCountries());			
-		model.addAttribute("states", stateService.getStates());		
+		model.addAttribute("states", stateService.getStates());
 
 		if(keyword != null){
-			model.addAttribute("employees", employeeService.findByKeyword(keyword));
+			model.addAttribute(employees, employeeService.findByKeyword(keyword));
 		}
 		else 
 		{
-		     model.addAttribute("employees", employeeService.getEmployees());			
+		     model.addAttribute(employees, employeeService.getEmployees());
 		}
 		
 		return "Employee";
@@ -57,17 +59,17 @@ public class EmployeeController {
 		model.addAttribute("countries", countryService.getCountries());			
 		model.addAttribute("states", stateService.getStates());		
 
-	   model.addAttribute("employees", employeeService.getEmployees());
+	   model.addAttribute(employees, employeeService.getEmployees());
 		
 		return "EmployeeFiltered";
 	}
-	
-	
+
+	private static final String redirection = "redirect:/employees";
 	// access to add form for employee
 	@PostMapping("/employees/addNew")
 	public String addNew(Employee employee) {
 		employeeService.save(employee);
-		return "redirect:/employees";
+		return redirection;
 	}
 
 	// Get employee by id
@@ -81,21 +83,21 @@ public class EmployeeController {
 	@RequestMapping(value="/employees/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Employee employee) {
 		employeeService.save(employee);
-		return "redirect:/employees";
+		return redirection;
 	}
 
 	// delete employee
 	@RequestMapping(value="/employees/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		employeeService.delete(id);
-		return "redirect:/employees";
+		return redirection;
 	}
 
 	//Assign Employee Username
 	@RequestMapping(value = "/employees/assignUsername")
 	public  String assignUsername(int id){
 		employeeService.assignUsername(id);
-		return "redirect:/employees";
+		return redirection;
 	}
 
 }

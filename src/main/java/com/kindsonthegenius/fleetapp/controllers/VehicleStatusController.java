@@ -22,19 +22,21 @@ public class VehicleStatusController {
 
 	// access to vehicles status list
 	@GetMapping("/vehicleStatuses")
-	public String getVehicleStatuss(Model model) {		
+	public String getVehicleStatus(Model model) {
 		
 		List<VehicleStatus> vehicleStatusList = vehicleStatusService.getVehicleStatuses();	
 
 		model.addAttribute("vehicleStatuses", vehicleStatusList);
 		return "vehicleStatus";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleStatuses";
 
 	// add  new vehicle status
 	@PostMapping("/vehicleStatuses/addNew")
 	public String addNew(VehicleStatus vehicleStatus) {
 		vehicleStatusService.save(vehicleStatus);
-		return "redirect:/vehicleStatuses";
+		return redirection;
 	}
 
 	// Get vehicle status bt id
@@ -48,13 +50,13 @@ public class VehicleStatusController {
 	@RequestMapping(value="/vehicleStatuses/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleStatus vehicleStatus) {
 		vehicleStatusService.save(vehicleStatus);
-		return "redirect:/vehicleStatuses";
+		return redirection;
 	}
 
 	// delete vehicle status
 	@RequestMapping(value="/vehicleStatuses/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleStatusService.delete(id);
-		return "redirect:/vehicleStatuses";
+		return redirection;
 	}
 }

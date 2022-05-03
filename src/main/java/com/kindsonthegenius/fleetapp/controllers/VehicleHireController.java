@@ -36,13 +36,15 @@ public class VehicleHireController {
 		model.addAttribute("clients", clientService.getClients());
 
 		return "vehicleHire";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleHires";
 
 	// add new hire vehicule
 	@PostMapping("/vehicleHires/addNew")
 	public String addNew(VehicleHire vehicleHire) {
 		vehicleHireService.save(vehicleHire);
-		return "redirect:/vehicleHires";
+		return redirection;
 	}
 
 	// Get hire vehicle by id
@@ -56,13 +58,13 @@ public class VehicleHireController {
 	@RequestMapping(value="/vehicleHires/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleHire vehicleHire) {
 		vehicleHireService.save(vehicleHire);
-		return "redirect:/vehicleHires";
+		return redirection;
 	}
 
 	// delete hire vehicle
 	@RequestMapping(value="/vehicleHires/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleHireService.delete(id);
-		return "redirect:/vehicleHires";
+		return redirection;
 	}
 }

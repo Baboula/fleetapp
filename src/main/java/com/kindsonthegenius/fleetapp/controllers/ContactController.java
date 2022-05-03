@@ -33,13 +33,15 @@ public class ContactController {
 		model.addAttribute("states", stateService.getStates());
 
 		return "Contact";
-	}	
+	}
+
+	private static final String redirection = "redirect:/contacts";
 
 	// send infos of new contact and show new list of contacts
 	@PostMapping("/contacts/addNew")
 	public String addNew(Contact contact) {
 		contactService.save(contact);
-		return "redirect:/contacts";
+		return redirection;
 	}
 
 	// get contact by id
@@ -53,14 +55,14 @@ public class ContactController {
 	@RequestMapping(value="/contacts/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Contact contact) {
 		contactService.save(contact);
-		return "redirect:/contacts";
+		return redirection;
 	}
 
 	// delete contact by id
 	@RequestMapping(value="/contacts/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		contactService.delete(id);
-		return "redirect:/contacts";
+		return redirection;
 	}
 
 }

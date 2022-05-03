@@ -33,13 +33,15 @@ public class StateController {
 		model.addAttribute("countries", countryList);
 		
 		return "State";
-	}	
+	}
+
+	private static final String redirection = "redirect:/states";
 
 	// add new state
 	@PostMapping("/states/addNew")
 	public String addNew(State state) {
 		stateService.save(state);
-		return "redirect:/states";
+		return redirection;
 	}
 
 	// Get state by id
@@ -53,14 +55,14 @@ public class StateController {
 	@RequestMapping(value="/states/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(State state) {
 		stateService.save(state);
-		return "redirect:/states";
+		return redirection;
 	}
 
 	// delete state
 	@RequestMapping(value="/states/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		stateService.delete(id);
-		return "redirect:/states";
+		return redirection;
 	}
 	
 

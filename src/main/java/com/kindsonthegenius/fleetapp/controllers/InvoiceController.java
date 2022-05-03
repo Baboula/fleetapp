@@ -32,13 +32,15 @@ public class InvoiceController {
 		model.addAttribute("invoiceStatuses", invoiceStatusService.getInvoiceStatuses());
 	
 		return "Invoice";
-	}	
+	}
+
+	private static final String redirection = "redirect:/invoices";
 
 	// save new invoice of client
 	@PostMapping("/invoices/addNew")
 	public String addNew(Invoice invoice) {
 		invoiceService.save(invoice);
-		return "redirect:/invoices";
+		return redirection;
 	}
 
 	// Get invoice by id
@@ -52,13 +54,13 @@ public class InvoiceController {
 	@RequestMapping(value="/invoices/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(Invoice invoice) {
 		invoiceService.save(invoice);
-		return "redirect:/invoices";
+		return redirection;
 	}
 
 	// delete invoice
 	@RequestMapping(value="/invoices/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		invoiceService.delete(id);
-		return "redirect:/invoices";
+		return redirection;
 	}
 }

@@ -32,13 +32,15 @@ public class VehicleMovementController {
 		model.addAttribute("locations", locationService.getLocations());
 
 		return "VehicleMovement";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleMovements";
 
 	// add new vehicle movement
 	@PostMapping("/vehicleMovements/addNew")
 	public String addNew(VehicleMovement vehicleMovement) {
 		vehicleMovementService.save(vehicleMovement);
-		return "redirect:/vehicleMovements";
+		return redirection;
 	}
 
 	// Get vehicle movement by id
@@ -52,14 +54,14 @@ public class VehicleMovementController {
 	@RequestMapping(value="/vehicleMovements/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleMovement vehicleMovement) {
 		vehicleMovementService.save(vehicleMovement);
-		return "redirect:/vehicleMovements";
+		return redirection;
 	}
 
 	// delete vehicle movement
 	@RequestMapping(value="/vehicleMovements/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleMovementService.delete(id);
-		return "redirect:/vehicleMovements";
+		return redirection;
 	}
 
 }

@@ -33,13 +33,15 @@ public class VehicleMaintenanceController {
 		model.addAttribute("suppliers", supplierService.getSuppliers());
 
 		return "VehicleMaintenance";
-	}	
+	}
+
+	private static final String redirection = "redirect:/vehicleMaintenances";
 
 	// add new vehicle in maintenance
 	@PostMapping("/vehicleMaintenances/addNew")
 	public String addNew(VehicleMaintenance vehicleMaintenance) {
 		vehicleMaintenanceService.save(vehicleMaintenance);
-		return "redirect:/vehicleMaintenances";
+		return redirection;
 	}
 
 	// Get vehiculeMaintenance by id
@@ -53,14 +55,14 @@ public class VehicleMaintenanceController {
 	@RequestMapping(value="/vehicleMaintenances/update", method= {RequestMethod.PUT, RequestMethod.GET})
 	public String update(VehicleMaintenance vehicleMaintenance) {
 		vehicleMaintenanceService.save(vehicleMaintenance);
-		return "redirect:/vehicleMaintenances";
+		return redirection;
 	}
 
 	// delete vehicleMaintenance
 	@RequestMapping(value="/vehicleMaintenances/delete", method= {RequestMethod.DELETE, RequestMethod.GET})
 	public String delete(Integer id) {
 		vehicleMaintenanceService.delete(id);
-		return "redirect:/vehicleMaintenances";
+		return redirection;
 	}
 
 }

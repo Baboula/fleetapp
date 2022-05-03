@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kindsonthegenius.fleetapp.models.Employee;
-import com.kindsonthegenius.fleetapp.models.Employee;
-import com.kindsonthegenius.fleetapp.repositories.EmployeeRepository;
 import com.kindsonthegenius.fleetapp.repositories.EmployeeRepository;
 
 @Service
@@ -49,11 +47,15 @@ public class EmployeeService {
 	//Set the Username of the employee where firstname and lastname match
 	public void assignUsername(int id){
 		Employee employee = employeeRepository.findById(id).orElse(null);
-		User user = userRepository.findByFirstnameAndLastname(
-				employee.getFirstname(),
-				employee.getLastname());
+		if(employee!=null){
+			User user = userRepository.findByFirstnameAndLastname(
+					employee.getFirstname(),
+					employee.getLastname());
+			employee.setUsername(user.getUsername());
+			employeeRepository.save(employee);
+		}
 
-		employee.setUsername(user.getUsername());
-		employeeRepository.save(employee);
+
+
 	}
 }

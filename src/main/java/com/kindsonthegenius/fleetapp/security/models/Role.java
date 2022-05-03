@@ -13,8 +13,7 @@ import javax.persistence.Id;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Role {
-
+public class Role{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
